@@ -1,0 +1,17 @@
+<div class="float-right">
+    <small>
+        <strong class="text-primary lead">Your cart:</strong>
+        <span *ngIf="cart.ItemCount > 0" class="text-success">
+            <strong>
+                {{ cart.ItemCount }} item(s)
+                {{ cart.cartPrice | currency:"USD":true:"2.2-2" }}
+            </strong>
+        </span>
+        <span *ngIf="cart.ItemCount == 0" class="text-success">
+            <strong>(empty)</strong>
+        </span>
+    </small>
+    <button class="btn btn-sm bg-inverse" [disabled]="cart.ItemCount == 0">
+        <i class="basket fa fa-shopping-basket"></i>
+    </button>
+</div>

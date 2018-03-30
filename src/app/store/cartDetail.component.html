@@ -1,0 +1,65 @@
+<div class="navbar bg-secondary">
+    <a href="#" class="navbar-brand">SPORTS STORE</a>
+</div>
+<div class="container">
+    <h2 class="text-sm-center">Your Cart</h2>
+    <table class="table table-bordered table-stripped">
+        <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Product</th>
+                <th class="text-sm-right">Price</th>
+                <th class="text-sm-right">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngIf = "cart.lines.length == 0">
+                <td colspan = "4" class = "text-center">
+                    Your Cart is Empty
+                </td>
+            </tr>
+            <tr *ngFor = "let line of cart.lines">
+                <td>
+                    <input type="number" class="form-control-sm"
+                           style = "width:5em"  
+                           [value] = "line.quantity"
+                           (change) = "cart.updateQuantity(lime.product,
+                                $event.target.value)"/>
+                </td>
+
+                <td> {{ line.product.name }} </td>
+
+                <td class="text-sm-right">
+                    {{ line.product.price | currency:"USD":true:"2.2-2"}}
+                </td>
+
+                <td class="text-sm-right">
+                    {{ line.product.lineTotal | currency:"USD":true:"2.2-2"}}
+                </td>
+
+                <td class="text-sm-center">
+                    <button class="btn btn-sm btn-danger"
+                            (click) = "cart.removeLine(line.product.id)">
+                        Remove
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr *ngIf = "cart.lines.length != 0">
+                <td colspan = "3" class = "text-sm-right">Total:</td>
+                <td class="text-sm-right">
+                    {{ cart.cartPrice | currency: "USD":true:"2.2-2" }}
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div class="text-sm-center">
+        <button class="btn btn-primary" routerLink = "/store">Continue Shopping</button>
+        <button class="btn btn-secondary" routerLink = "/checkout"
+                [disabled] = "cart.lines.length == 0">
+            Checkout
+        </button>
+    </div> 
+</div>

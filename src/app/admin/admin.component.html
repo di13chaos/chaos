@@ -1,0 +1,26 @@
+<div class="navbar bg-secondary">
+    <a href="#" class="navbar-brand">SPORTS STORE Admin</a>
+</div>
+
+<div class="container" style="margin-top:1rem">
+    <div class="row">
+        <div class="col-sm-3">
+            <button class="btn btn-outline-info btn-block"
+                    routerLink="/admin/main/products"
+                    routerLinkActive="active">
+                Products
+            </button>
+            <button class="btn btn-outline-info btn-block"
+                     routerLink="/admin/main/orders" 
+                     routerLinkActive="active">
+                Orders
+            </button>
+            <button class="btn btn-outline-danger btn-block" (click) = "logout()">
+                Logout
+            </button>
+        </div>
+        <div class="col-sm-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
